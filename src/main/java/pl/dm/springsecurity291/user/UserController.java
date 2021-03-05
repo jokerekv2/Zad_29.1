@@ -5,10 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
@@ -17,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user/login")
+    @GetMapping("/login")
     private String login(Model model, Authentication authentication) {
         if (userService.hasRole("ROLE_ADMIN")) {
             return "redirect:/admin";
@@ -27,13 +29,13 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/register")
+    @GetMapping("/register")
     public String registrationForm(Model model) {
         model.addAttribute("user", new User());
         return "registrationForm";
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/register")
     public String registerProcessing(User user) {
         String username = user.getUsername();
         String rawPassword = user.getPassword();
@@ -42,12 +44,12 @@ public class UserController {
         return "successRegister";
     }
 
-    @GetMapping("/user/data-change")
+    @GetMapping("/data-change")
     public String dataChange() {
         return "dataChangeForm";
     }
 
-    @PostMapping("/user/data-change")
+    @PostMapping("/data-change")
     public String dataChange(@RequestParam String username,
                              @RequestParam String password) {
 
