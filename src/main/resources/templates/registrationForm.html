@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/styles/style.css">
+
+</head>
+<body>
+
+<div class="layout">
+
+    <a th:href="@{/}">Go to main page!</a>
+    <h2>Sign Up:</h2>
+
+    <form th:action="@{/user/register}" method="post" th:object="${user}">
+
+        <div class="mb-3">
+            <label for="exampleInput" class="form-label">Username</label>
+            <input th:field="${user.username}" name="username" type="text" class="form-control" id="exampleInput" aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input th:field="${user.password}" name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+</div>
+
+
+</body>
+</html>
